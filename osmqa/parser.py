@@ -7,7 +7,7 @@ import mapbox_vector_tile
 
 
 class QATileParser(object):
-    def __init__(self, x, y, zoom,
+    def __init__(self,
                  nodes_callback=None, ways_callback=None,
                  relations_callback=None, coords_callback=None,
                  nodes_tag_filter=None, ways_tag_filter=None,
@@ -18,20 +18,23 @@ class QATileParser(object):
         self.nodes_tag_filter = nodes_tag_filter
         self.ways_tag_filter = ways_tag_filter
 
-        self.x = x
-        self.y = y
-        self.zoom = zoom
+        self.x = None
+        self.y = None
+        self.zoom = None
         self.extent = None
 
         self.node_id_seq = itertools.count()
         self.node_id_map = {}  # Map (lon, lat) to node ID
         self.way_id_seq = itertools.count()
 
-    def parse(self, pbf):
-        data = pbf.read()
+    def parse_data(self, data, x, y, zoom):
+        self.x = x
+        self.y = y
+        self.zoom = zoom
+
         tile = mapbox_vector_tile.decode(data)
+        self.extent = tile['osm']['extent']
         for feature in tile['osm']['features']:
-            self.extent = tile['osm']['extent']
             self._handle_feature(feature)
 
     def _handle_feature(self, feature):
