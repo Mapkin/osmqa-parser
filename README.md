@@ -24,7 +24,9 @@ Because ways in a QA tile contain a coordinate sequence instead of a node
 sequence, we can't distinguish different nodes that have the same tile
 coordinate. `osmqa-parser` assigns unique node IDs based on tile coordinate.
 As a result, it's possible we introduce false intersections which arise when
-two ways have different nodes that have the same coordinates.
+two ways have different nodes that have the same coordinates. Also, different
+nodes that fall on the same tile coordinate will have identical node IDs,
+which usually means their tags are merged together as one.
 
 
 Goes Great With
