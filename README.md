@@ -18,7 +18,6 @@ Data Model Caveats
 OSM QA tiles are delivered as
 [Mapbox Vector Tiles](https://www.mapbox.com/developers/vector-tiles/). It is
 impossible to exactly reconstruct the original OSM data from a vector tile.
-And they are not designed for this use case.
 
 Because ways in a QA tile contain a coordinate sequence instead of a node
 sequence, we can't distinguish different nodes that have the same tile
