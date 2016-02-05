@@ -27,7 +27,7 @@ class QATileParser(object):
         self.node_id_map = {}  # Map (lon, lat) to node ID
         self.way_id_seq = itertools.count()
 
-    def parse_data(self, data, x, y, zoom):
+    def parse_data(self, x, y, zoom, data):
         self.x = x
         self.y = y
         self.zoom = zoom
